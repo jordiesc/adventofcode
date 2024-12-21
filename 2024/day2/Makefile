@@ -7,7 +7,7 @@ SRCS = $(wildcard *.c)
 OBJS = $(SRCS:.c=.o)
 
 # Output executable
-TARGET = day1
+TARGET = day2-part1
 
 # Default target to build and run
 all: $(TARGET)
