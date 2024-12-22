@@ -37,6 +37,7 @@ int read_data(int ***data, int *numrows, char *filename) {
             return 1;
         }
         *data = temp;
+        //the () are needed otherwise the [] takes precedence
         (*data)[rows++] = row; // Add the new row to the data array
     }
 
