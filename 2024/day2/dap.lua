@@ -19,7 +19,7 @@ dap.configurations.c = {
         name = 'Run executable (GDB)',
         type = 'gdb',
         request = 'launch',
-        program = "day2-part1",
+        program = "day2-part2",
 console = "integratedTerminal",    }
 }
 
