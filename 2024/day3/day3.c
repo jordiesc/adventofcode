@@ -5,6 +5,7 @@
 #include <string.h>
 #include <regex.h>
 # define MAX_CHARS 1024
+#define ARRAY_SIZE(array) (sizeof((array)) / sizeof((array)[0]))
 
 void find_matches(const char *pattern, const char *string);
 
@@ -16,25 +17,29 @@ int main() {
     // Character buffer that stores the read character
     // till the next iteration
     char *buffr;
-    char *fullcontent;
-        buffr = (char *) malloc(MAX_CHARS * sizeof(char));
+    char *fullcontent = NULL ;
+    buffr = (char *) malloc(MAX_CHARS * sizeof(char));
     size_t llargada = 0;
+    size_t chunk = 0;
 
     // Opening file in reading mode
     fptr = fopen("input.txt", "r");
 
-    while (fgets(buffr, sizeof(buffr), fptr) != NULL) {
-        fullcontent = realloc(fullcontent, llargada + strlen(buffr) + 1);
-        fullcontent = strcpy(fullcontent, buffr);
-        /* printf("%s",fullcontent); */
+    while (fgets(buffr, MAX_CHARS, fptr) != NULL) {
+        
+        chunk = strlen(buffr);
+        fullcontent = realloc(fullcontent, (llargada + chunk)*(sizeof(char)) +1);
+        strcpy(fullcontent+llargada, buffr);
+        llargada += chunk;
+       
+          
     }    
     
-    // Print the file content
     printf("%s",fullcontent);
-    const char *string = "mul(12,34) don't() undo() mul(56,78) something_else";
+    // Print the file content
+    /* const char *string = "mul(12,34) don't() undo() mul(56,78) something_else"; */
     const char *pattern = "mul\\([0-9]+,[0-9]+\\)|don't\\(\\)|undo\\(\\)";
     /* const char *pattern = "mul\\([0-9]+,[0-9]+\\)"; */
-    find_matches(pattern, string);
     find_matches(pattern,fullcontent);
     free(fullcontent);
     free(buffr);
@@ -82,6 +87,8 @@ void find_matches(const char *pattern, const char *string) {
     // Free the regex object
     regfree(&regex);
 }
+
+
 
 int main_other() {
     const char *string = "abc123abc456abc";
