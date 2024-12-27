@@ -1,0 +1,9 @@
+{
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/home/jordi/jordi/repositorios/github/adventofcode/2024/day3",
+            "binaryPath": "/home/jordi/jordi/repositorios/github/adventofcode/2024/day3/day3",
+            "binaryArgs": []
+        }
+    ]
+}
