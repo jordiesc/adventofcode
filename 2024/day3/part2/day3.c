@@ -9,7 +9,7 @@
 
 char** find_matches(const char *pattern, const char *string,size_t *number_matches);
 
-enum Match_t { NUM,DONT,DO };
+enum Match_t { DONT,DO };
 
 long parse_match(char* match, int length, enum Match_t *match_enum ); 
 
@@ -58,7 +58,7 @@ char**  find_matches(const char *pattern, const char *string, size_t *number_mat
     regex_t regex;
     regmatch_t pmatch[1]; // Array to hold match information
     const char *cursor = string; // Pointer to track the search position
-    enum Match_t match_t;
+    enum Match_t match_t = DO;
     long result = 0;
     //
     /* char **matches = NULL; */
@@ -70,8 +70,6 @@ char**  find_matches(const char *pattern, const char *string, size_t *number_mat
         fprintf(stderr, "Could not compile regex\n");
         return NULL;
     }
-
-
 
     // Search for matches
     while (regexec(&regex, cursor, 1, pmatch, 0) == 0) {
@@ -110,8 +108,8 @@ char**  find_matches(const char *pattern, const char *string, size_t *number_mat
 long parse_match(char* match, int length, enum Match_t *match_enum ) {
 
     long result = 0;
-    if ( strstr(match,"mul(") != NULL) {
-        *match_enum = NUM;
+    if ( strstr(match,"mul(") != NULL && *match_enum== DO) {
+        /* *match_enum = NUM; */
         long a = 0;
         long b = 0;
         sscanf(match,"mul(%ld,%ld)",&a,&b);
