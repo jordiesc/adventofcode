@@ -1,0 +1,64 @@
+// C program to read a file line by line
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#ifndef WIDTH
+/* #define WIDTH 10 */
+#define WIDTH 140
+#endif
+
+#ifndef HEIGHT
+#define HEIGHT 140
+/* #define HEIGHT 10 */
+#endif
+
+
+int main()
+{
+    // Create a file pointer and open the file "GFG.txt" in
+    // read mode.
+    FILE* file = fopen("input.txt", "r");
+
+    // Buffer to store each line of the file.
+    char line[WIDTH];
+    char buffer[WIDTH+1];
+
+    /* char ** fileInChar ; */ 
+
+    /* fileInChar = (char **) malloc(HEIGHT * sizeof(char *)); */
+
+    char* fileInChar[HEIGHT];
+
+    int i = 0;
+
+    // Check if the file was opened successfully.
+    if (file != NULL) {
+        // Read each line from the file and store it in the
+        // 'line' buffer.
+    while (fgets(buffer, WIDTH+1, file) && i < HEIGHT) {
+            // Print each line to the standard output.
+            /* printf("el valor de i es %d\n", i); */
+            printf("la ieslmia inea %d  linea es : %s \n",i,buffer);
+             /* fileInChar[i] = line; */
+            /* printf("%s", fileInChar[i]); */
+            fileInChar[i] = buffer;
+            i++;
+
+        }
+
+        // Close the file stream once all lines have been
+        // read.
+        fclose(file);
+    }
+    else {
+        // Print an error message to the standard error
+        // stream if the file cannot be opened.
+        fprintf(stderr, "Unable to open file!\n");
+    }
+
+
+
+    return 0;
+}
