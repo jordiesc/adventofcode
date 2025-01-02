@@ -5,30 +5,23 @@
 #include <string.h>
 
 #ifndef WIDTH
-/* #define WIDTH 10 */
-#define WIDTH 140
+#define WIDTH 10
+//#define WIDTH 140
 #endif
 
 #ifndef HEIGHT
-#define HEIGHT 140
-/* #define HEIGHT 10 */
+//#define HEIGHT 140
+#define HEIGHT 10
 #endif
 
 
 int main()
 {
-    // Create a file pointer and open the file "GFG.txt" in
-    // read mode.
-    FILE* file = fopen("input.txt", "r");
+    FILE* file = fopen("input-test.txt", "r");
 
     // Buffer to store each line of the file.
     char line[WIDTH];
-    char buffer[WIDTH+1];
-
-    /* char ** fileInChar ; */ 
-
-    /* fileInChar = (char **) malloc(HEIGHT * sizeof(char *)); */
-
+    char buffer[WIDTH+2]; //one position for the \n and one for the \0 at the end
     char* fileInChar[HEIGHT];
 
     int i = 0;
@@ -37,28 +30,27 @@ int main()
     if (file != NULL) {
         // Read each line from the file and store it in the
         // 'line' buffer.
-    while (fgets(buffer, WIDTH+1, file) && i < HEIGHT) {
-            // Print each line to the standard output.
-            /* printf("el valor de i es %d\n", i); */
+    while (fgets(buffer, WIDTH+2, file) && i < HEIGHT) {
             printf("la ieslmia inea %d  linea es : %s \n",i,buffer);
-             /* fileInChar[i] = line; */
-            /* printf("%s", fileInChar[i]); */
-            fileInChar[i] = buffer;
+            fileInChar[i] = calloc(WIDTH, sizeof(char));
+            for (int j = 0; j < WIDTH; j++) {
+                fileInChar[i][j] = buffer[j];
+            }
+
             i++;
 
         }
 
-        // Close the file stream once all lines have been
-        // read.
         fclose(file);
     }
     else {
-        // Print an error message to the standard error
-        // stream if the file cannot be opened.
         fprintf(stderr, "Unable to open file!\n");
     }
 
-
+    for (int i = 0; i < HEIGHT; i++) {
+        printf("%s", fileInChar[i]);
+        free(fileInChar[i]);
+    } 
 
     return 0;
 }
