@@ -7,6 +7,14 @@
 
 using namespace std;
 
+struct  DivisioSenzera {
+
+    int rest;
+    int quocient;
+    
+} ;
+
+
 void readFile(string filename, vector<string>& lines); 
 #endif
 

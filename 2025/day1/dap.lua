@@ -14,12 +14,18 @@ dap.adapters.gdb = {
     args = { '--quiet', '--interpreter=dap' },
 }
 
-dap.configurations.cpp = {
+dap.configurations.cpp = { 
     {
         name = 'Run executable (GDB)',
         type = 'gdb',
         request = 'launch',
-        program = "main",
-console = "integratedTerminal",    }
-}
+        program = "${workspaceFolder}/main",
+console = "integratedTerminal",  
+       cwd = '${workspaceFolder}',
+    stopAtEntry = true,
+    -- Setup commands can be useful for GDB pretty-printing
+    setupCommands = {
+      { text = '-enable-pretty-printing', description = 'enable pretty printing'   }}
+},
 
+}

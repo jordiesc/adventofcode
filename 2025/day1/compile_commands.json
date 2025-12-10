@@ -1,1 +1,36 @@
-[]
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-pedantic",
+      "-O2",
+      "-c",
+      "-o",
+      "main.o",
+      "src/main.cpp"
+    ],
+    "directory": "/home/jordi/repos/github/adventofcode/2025/day1",
+    "file": "/home/jordi/repos/github/adventofcode/2025/day1/src/main.cpp",
+    "output": "/home/jordi/repos/github/adventofcode/2025/day1/main.o"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-pedantic",
+      "-O2",
+      "-c",
+      "-o",
+      "util.o",
+      "src/util.cpp"
+    ],
+    "directory": "/home/jordi/repos/github/adventofcode/2025/day1",
+    "file": "/home/jordi/repos/github/adventofcode/2025/day1/src/util.cpp",
+    "output": "/home/jordi/repos/github/adventofcode/2025/day1/util.o"
+  }
+]
